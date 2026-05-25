@@ -80,6 +80,67 @@ Run:
 ```bash
 pnpm dev
 ```
+---
+
+## Business Rules
+
+### Authentication
+
+* Authentication uses JWT.
+* Protected routes require a valid token.
+* Users are redirected according to their role.
+
+Admin:
+
+```txt
+/admin
+```
+
+User:
+
+```txt
+/statement
+```
+
+---
+
+### Spreadsheet Upload
+
+Spreadsheet upload follows these rules:
+
+* Uploading a spreadsheet does not create users.
+* Transactions are only associated with registered users.
+
+Behavior:
+
+```txt
+Registered CPF → transaction created
+Unregistered CPF → transaction ignored
+```
+
+---
+
+### Statement
+
+Users can only see:
+
+```txt
+their own transactions
+```
+
+Users cannot access information from other accounts.
+
+---
+
+### Wallet
+
+The displayed balance is calculated using only:
+
+```txt
+Approved transactions
+```
+
+Pending and rejected transactions do not affect balance.
 
 ---
 
